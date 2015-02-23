@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City:</strong>
+  <%= @employee_detail.city %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @employee_detail.address %>
+</p>
+
+<p>
+  <strong>House number:</strong>
+  <%= @employee_detail.house_number %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @employee_detail.phone_number %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @employee_detail.postal_code %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @employee_detail.employee %>
+</p>
+
+<%= link_to 'Edit', edit_employee_detail_path(@employee_detail) %> |
+<%= link_to 'Back', employee_details_path %>

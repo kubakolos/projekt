@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pracownicy</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th>Miejsce Pracy</th>
+      <th>Lata Pracy</th>
+      <th>Dostęp do kasy</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.surname %></td>
+        <td><%= employee.workplace %></td>
+        <td><%= employee.years_of_work %></td>
+        <td><%= employee.access_to_cash %></td>
+        <td><%= link_to 'Pokaż', employee,class: "btn btn-info" %></td>
+        <td><%= link_to 'Edytuj', edit_employee_path(employee),class: "btn btn-warning" %></td>
+        <td><%= link_to 'Usuń', employee, 
+        method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path, class: "btn btn-info" %>
