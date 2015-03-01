@@ -26,6 +26,11 @@
 </p>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'My employees', employees_path %>
 <br>
-<%= link_to 'Dodaj dane pracownika',new_employee_employee_detail_path(@employee) %>
+
+<% if @employee.employee_detail.nil? %>
+  <%= link_to 'Dodaj dane pracownika',new_employee_employee_detail_path(@employee) %>
+<% else %>
+  <%= link_to 'Pokaż dane', employee_employee_detail_path(@employee) %>
+<% end %>

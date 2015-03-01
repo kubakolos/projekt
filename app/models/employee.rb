@@ -1,3 +1,3 @@
 class Employee < ActiveRecord::Base
-	has_many :employee_details
+	has_one :employee_detail
 end

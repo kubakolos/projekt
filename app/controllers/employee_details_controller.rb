@@ -30,12 +30,12 @@ class EmployeeDetailsController < ApplicationController
   # POST /employee_details.json
   def create
 
-    @employee_detail = @employee.employee_details.new(employee_detail_params)
+    @employee_detail = @employee.build_employee_detail(employee_detail_params)
 
     respond_to do |format|
       if @employee_detail.save
-        format.html { redirect_to [@employee, @employee_detail], notice: 'Employee detail was successfully created.' }
-        format.json { render :show, status: :created, location: [@employee, @employee_detail] }
+        format.html { redirect_to employee_employee_detail_path(@employee), notice: 'Employee detail was successfully created.' }
+        format.json { render :show, status: :created, location: employee_employee_detail_path(@employee) }
       else
         format.html { render :new }
         format.json { render json: @employee_detail.errors, status: :unprocessable_entity }
@@ -48,8 +48,8 @@ class EmployeeDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @employee_detail.update(employee_detail_params)
-        format.html { redirect_to [@employee, @employee_detail] , notice: 'Employee detail was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@employee, @employee_detail]  }
+        format.html { redirect_to employee_employee_detail_path(@employee) , notice: 'Employee detail was successfully updated.' }
+        format.json { render :show, status: :ok, location: employee_employee_detail_path(@employee)  }
       else
         format.html { render :edit }
         format.json { render json: @employee_detail.errors, status: :unprocessable_entity }
@@ -70,7 +70,7 @@ class EmployeeDetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee_detail
-      @employee_detail = EmployeeDetail.find(params[:id])
+      @employee_detail = @employee.employee_detail
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
