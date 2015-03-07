@@ -1,3 +1,5 @@
+<br>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -26,8 +28,8 @@
 </p>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'My employees', employees_path %>
-<br>
+<%= link_to 'My employees', employees_path %> |
+
 
 <% if @employee.employee_detail.nil? %>
   <%= link_to 'Dodaj dane pracownika',new_employee_employee_detail_path(@employee) %>

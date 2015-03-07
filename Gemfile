@@ -25,6 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
 gem 'bootstrap-sass', '~> 3.3.3'
 
 group :development do
