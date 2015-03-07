@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Item.destroy_all
+
+Item.create(name: "H1", quantity: 0, vat: 0.23)
+Item.create(name: "H2", quantity: 0, vat: 0.23)
+
+puts "Items created"

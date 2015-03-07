@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  resources :items, except: [:new , :create] do
+    get 'add'
+    get 'sell'
+  end
+
+
   resources :employees do 
     resource :employee_detail
   end
