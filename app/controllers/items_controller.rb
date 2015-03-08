@@ -2,25 +2,44 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def add
-    item = Item.find_by_id(params[:item_id])
+    item = Item.find_by_id(params[:id])
 
     if item
       item.quantity += 1
       item.save
     end
 
-    redirect_to items_url
+    redirect_to item
   end
 
   def sell
-    item = Item.find_by_id(params[:item_id])
+    @item = Item.find_by_id(params[:id])
+    person = params[:person]
+    items_quantity = params[:product][:quantity].to_i
 
-    if item and item.quantity > 0
-      item.quantity -= 1
-      item.save
-      render :pdf => "pracownicy"
+    @invoice = Invoice.new(
+        client_name: person[:name],
+        client_surname: person[:surname],
+        client_address: person[:address],
+        item_id: @item.id,
+        quantity: items_quantity
+      )
+
+    if @item and @item.quantity >= items_quantity
+      @item.quantity -= items_quantity
+      @item.save
+      @invoice.save
+
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render :pdf => "faktura"
+        end
+      end
+    else
+      redirect_to @item
     end
-    redirect_to items_url
+
   end
 
   # GET /items

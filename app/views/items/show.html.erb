@@ -1,23 +1,44 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+<div class="col-md-4">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @item.quantity %>
-</p>
+  <p>
+    <h2>Nazwa: <%= @item.name %></h2>
+  </p>
 
-<p>
-  <strong>Vat:</strong>
-  <%= @item.vat %>
-</p>
+  <p>
+    <h2>Ilość: <%= @item.quantity %></h2>
+  </p>
+  <p>
+    <h2>Cena: <%= @item.price %> zł/szt</h2>
+  </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+  <p>
+    <h2>VAT: <%= @item.vat %>%</h2>
+  </p>
 
-<%= link_to 'Dodaj', item_add_path(@item) %> |
-<%= link_to 'Sprzedaj', item_sell_path(@item) %> |
+  <%= link_to 'Edytuj', edit_item_path(@item), class: "btn btn-warning" %> |
+  <%= link_to 'Dodaj', add_item_path(@item), class: "btn btn-default" %>
+</div>
 
+<div class="col-md-3">
+  <%= form_tag({controller: "items", action: "sell"}, method: "get", class: "form-group", format: :pdf) do %>
+    <h2>Dane klienta:</h2>
+    <%= label_tag("Imie:") %>
+    <%= text_field(:person, :name, class: "form-control") %>
+    <br>
+    <%= label_tag("Nazwisko:") %>
+    <%= text_field(:person, :surname, class: "form-control") %>
+    <br>
+    <%= label_tag("Adres:") %>
+    <%= text_field(:person, :address, class: "form-control") %>
+    <br>
+    <%= label_tag("Ilośc sztuk do sprzedania:") %>
+    <%= number_field(:product, :quantity, in: 1..100, class: "form-control") %>
+    <br>
+    <%= select_tag :format, options_for_select([["FAKTURA", "pdf"], ["HTML", "html"]], "pdf"), class: "form-control" %>
+    <br>
+    <%= submit_tag("Sprzedaj", class: "btn btn-success") %>
+    <%= link_to 'Wróć', items_path, class: "btn btn-primary" %>
+  <% end %>
+</div>

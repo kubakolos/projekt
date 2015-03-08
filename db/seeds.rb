@@ -9,7 +9,7 @@
 
 Item.destroy_all
 
-Item.create(name: "H1", quantity: 0, vat: 0.23)
-Item.create(name: "H2", quantity: 0, vat: 0.23)
+Item.create(name: "H1", quantity: 0, vat: 0.23, price: 2.50)
+Item.create(name: "H2", quantity: 0, vat: 0.23, price: 1.80)
 
 puts "Items created"
